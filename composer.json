@@ -1,0 +1,6 @@
+{
+    "name": "root/blog",
+    "require": {
+        "twig/twig": "^2.4"
+    }
+}

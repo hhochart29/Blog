@@ -1,0 +1,7 @@
+Titre
+Auteur
+Contenu
+Date
+image a la une
+commentaires (deuxieme table)
+tag

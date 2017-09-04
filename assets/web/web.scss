@@ -1,0 +1,151 @@
+$color: rgba(0, 63, 17, 0.32);
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Roboto, sans Serif;
+}
+
+.container {
+	max-width: 1080px;
+	display: block;
+	margin: auto;
+	width: 80%;
+}
+
+header {
+	background-color: $color;
+	.container {
+		display: flex;
+		@media screen and (max-width: 980px) {
+			display: block;
+			margin: auto;
+			text-align: center;
+			#menu {
+				text-align: center;
+				ul {
+					display: block;
+				}
+			}
+		}
+	}
+	#logo {
+		padding: 5px;
+		img {
+			max-height: 120px;
+			border-radius: 100%;
+			-webkit-box-shadow: 0px 2px 5px -1.5px black;
+			-moz-box-shadow: 0px 2px 5px -1.5px black;
+			box-shadow: 0px 2px 5px -1.5px black;
+			margin: 10px 0;
+		}
+	}
+	#menu {
+		text-align: right;
+		flex-grow: 1;
+		ul {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			height: 100%;
+			li {
+				display: inline-block;
+				margin: 5px;
+				padding: 5px;
+				a {
+					text-decoration: none;
+					color: black;
+					border-bottom: 2px solid $color;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+	&::after {
+		content: '';
+		clear: both;
+		display: table;
+	}
+}
+
+main {
+	article {
+		padding: 20px;
+		margin: 5px;
+		display: grid;
+		grid-template-areas: "title title pic" "date date pic" "author author pic" "content content content" "tags tags link";
+		@media screen and (max-width: 980px) {
+			grid-template-areas: "title title title" "date date date" "author author author" "pic pic pic" "content content content" "tags tags tags" "link link link";
+		}
+		.title {
+			grid-area: title;
+			align-self: center;
+		}
+		.image-container {
+			grid-area: pic;
+			align-self: center;
+			img {
+				-webkit-box-shadow: 0 4px 11px -4px black;
+				-moz-box-shadow: 0 4px 11px -4px black;
+				box-shadow: 0 4px 11px -4px black;
+			}
+		}
+		.date {
+			grid-area: date;
+			align-self: center;
+		}
+		.author {
+			grid-area: author;
+			align-self: center;
+		}
+		.content {
+			grid-area: content;
+			text-overflow: ellipsis;
+			margin: 20px 0;
+		}
+		.tags-container {
+			grid-area: tags;
+			ul.tags {
+				li.tag {
+					list-style-type: none;
+					display: inline-block;
+					background-color: lightgrey;
+					-webkit-border-radius: 15px;
+					-moz-border-radius: 15px;
+					border-radius: 15px;
+					border: 1px solid darken(lightgrey, 10%);
+					padding: 4px 12px;
+					font-size: 13px;
+				}
+			}
+		}
+		.link {
+			grid-area: link;
+			a {
+
+			}
+		}
+	}
+
+	form {
+		button[type=submit] {
+			padding: 10px;
+			background-color: $color;
+			border: none;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	}
+	margin: 15px 0;
+}
+
+footer {
+	color: white;
+	background-color: $color;
+	text-transform: uppercase;
+	font-size: 20px;
+	padding: 10px;
+	text-align: center;
+}
