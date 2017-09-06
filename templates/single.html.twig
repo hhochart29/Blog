@@ -1,0 +1,72 @@
+<article class="single">
+    <div class="title">
+        <h2>
+            {{ article.titre }}
+        </h2>
+    </div>
+
+    <div class="date">
+        publié le
+        <i>
+            {{ article.date|date("d/m/Y") }}
+        </i>
+    </div>
+
+    <div class="author">
+        {{ article.auteur }}
+    </div>
+
+    <div class="image-container">
+        <img src="../{{ article.image }}">
+    </div>
+
+    <div class="content">
+        {{ article.contenu }}
+    </div>
+
+    {% if tags is not null %}
+        <div class="tags-container">
+            <ul class="tags">
+                {% for tag in tags %}
+                    <li class="tag">
+                        {{ tag.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% if comments is not null %}
+        <div class="comments-wrapper">
+            <h3>Commentaires :</h3>
+            <div class="comments">
+                {% for comment in comments %}
+                    <div class="comment">
+                        <h4 class="comment-title">
+                            {{ comment.title }}
+                        </h4>
+
+                        <div class="comment-date">
+                            publié le : {{ comment.date|date("d/m/Y") }}
+                        </div>
+                        <div class="comment-content">
+                            {{ comment.content }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="add-comment">
+        <form method="post" action="{{ blogURL }}/addcomment/{{ article.id }}" enctype="multipart/form-data">
+
+            <label for="comment_title">Titre</label>
+            <input type="text" placeholder="Titre du commentaire" name="comment_title" id="comment_title">
+
+            <label for="coment_content">Votre commentaire</label>
+            <textarea id=comment_content" name="comment_content" rows="3"></textarea>
+
+            <button type="submit">Ajouter le commentaire</button>
+        </form>
+    </div>
+</article>

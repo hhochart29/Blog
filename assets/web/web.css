@@ -1,7 +1,8 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Roboto, sans Serif, serif; }
+  font-family: Roboto, sans Serif, serif;
+  box-sizing: border-box; }
 
 .container {
   max-width: 1080px;
@@ -22,9 +23,8 @@ header {
         header #top-header ul li a {
           line-height: 1.2em;
           color: white;
-          font-weight: bold;
-          text-transform: uppercase;
           padding: 7px;
+          text-decoration: none;
           display: inline-block; }
   header .container {
     display: flex; }
@@ -41,11 +41,8 @@ header {
     padding: 5px; }
     header #logo img {
       max-height: 120px;
-      border-radius: 100%;
-      -webkit-box-shadow: 0px 2px 5px -1.5px black;
-      -moz-box-shadow: 0px 2px 5px -1.5px black;
-      box-shadow: 0px 2px 5px -1.5px black;
-      margin: 10px 0; }
+      margin: 5px 0;
+      max-width: 250px; }
   header #menu {
     text-align: right;
     flex-grow: 1; }
@@ -69,41 +66,98 @@ header {
 
 main {
   margin: 15px 0; }
+  main .alert {
+    background-color: #ededed;
+    border: 2px solid lightgrey;
+    margin: 10px 0;
+    padding: 20px; }
   main article {
+    background-color: #ededed;
+    position: relative;
+    display: block;
     padding: 20px;
     margin: 5px;
-    display: grid;
-    grid-template-areas: "title title pic" "date date pic" "author author pic" "content content content" "tags tags link"; }
-    @media screen and (max-width: 980px) {
-      main article {
-        grid-template-areas: "title title title" "date date date" "author author author" "pic pic pic" "content content content" "tags tags tags" "link link link"; } }
-    main article .title {
-      grid-area: title;
-      align-self: center; }
+    float: left; }
+    main article:not(.single) {
+      width: calc(50% - 10px); }
+      @media screen and (max-width: 980px) {
+        main article:not(.single) {
+          width: calc(100% - 10px);
+          float: none; } }
+      main article:not(.single) .content {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      main article:not(.single) .image-container {
+        max-height: 200px; }
+      main article:not(.single) .link {
+        display: block;
+        margin: 10px 0; }
+        main article:not(.single) .link a {
+          text-decoration: none;
+          background-color: grey;
+          color: white;
+          padding: 7px;
+          display: inline-block;
+          cursor: pointer; }
+    main article.admin {
+      width: 100%; }
+      main article.admin .wrapper {
+        float: left; }
+        @media screen and (max-width: 980px) {
+          main article.admin .wrapper {
+            float: none; } }
+        main article.admin .wrapper .options a {
+          text-decoration: none;
+          display: inline-block;
+          margin-top: 15px;
+          cursor: pointer;
+          padding: 10px;
+          background-color: #ff9999;
+          color: white;
+          border: none; }
+      main article.admin .image-container {
+        width: auto;
+        float: right;
+        max-height: 100px; }
+        @media screen and (max-width: 980px) {
+          main article.admin .image-container {
+            float: none;
+            width: 100%;
+            max-height: 300px; }
+            main article.admin .image-container img {
+              width: 100% !important; } }
+        main article.admin .image-container img {
+          width: 200px; }
+      main article.admin::after {
+        content: '';
+        clear: both;
+        display: table; }
+    main article:nth-of-type(2n +1) {
+      clear: both; }
+      main article:nth-of-type(2n +1)::after {
+        content: '';
+        display: table;
+        clear: both; }
     main article .image-container {
-      grid-area: pic;
-      align-self: center;
+      margin-top: 10px;
       overflow: hidden;
-      max-width: 100%; }
+      max-width: 100%;
+      width: 100%;
+      max-height: 400px; }
       main article .image-container img {
-        max-height: 100%;
+        width: 100%;
         height: auto;
         -webkit-box-shadow: 0 4px 11px -4px black;
         -moz-box-shadow: 0 4px 11px -4px black;
-        box-shadow: 0 4px 11px -4px black;
-        width: 200px; }
-    main article .date {
-      grid-area: date;
-      align-self: center; }
-    main article .author {
-      grid-area: author;
-      align-self: center; }
+        box-shadow: 0 4px 11px -4px black; }
+    main article .date, main article .author {
+      font-size: 12px;
+      display: inline-block; }
     main article .content {
-      grid-area: content;
-      text-overflow: ellipsis;
       margin: 20px 0; }
     main article .tags-container {
-      grid-area: tags; }
+      display: block; }
       main article .tags-container ul.tags li.tag {
         list-style-type: none;
         display: inline-block;
@@ -114,16 +168,42 @@ main {
         border: 1px solid #bababa;
         padding: 4px 12px;
         font-size: 13px; }
-    main article .link {
-      grid-area: link; }
-  main form button[type=submit] {
-    padding: 10px;
-    background-color: grey;
-    border: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    cursor: pointer; }
+    main article .comments-wrapper {
+      margin: 20px 0; }
+      main article .comments-wrapper h3 {
+        margin-bottom: 10px; }
+      main article .comments-wrapper .comments .comment {
+        padding: 20px;
+        background-color: #f4f4f4; }
+        main article .comments-wrapper .comments .comment .comment-title {
+          margin-bottom: 10px; }
+        main article .comments-wrapper .comments .comment .comment-date {
+          font-size: 13px; }
+        main article .comments-wrapper .comments .comment .comment-content {
+          margin-top: 10px; }
+  main form {
+    background-color: white;
+    display: block;
+    padding: 20px; }
+    main form input, main form textarea, main form select {
+      margin: 10px 0;
+      width: 100%;
+      display: block;
+      padding: 7px; }
+    main form select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none; }
+    main form button[type=submit] {
+      padding: 10px;
+      background-color: grey;
+      border: none;
+      color: white;
+      cursor: pointer; }
+  main::after {
+    content: '';
+    display: table;
+    clear: both; }
 
 footer {
   color: white;

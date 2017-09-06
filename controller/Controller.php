@@ -20,11 +20,11 @@ class Controller
             PWD,
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_PERSISTENT => true)
         );
-        $this->blog = $blog;
+        $this->blog   = $blog;
         $this->router = $router;
     }
 
-
+    //affichage des articles
     public function articles()
     {
         $articles = $this->getAllArticles();
@@ -32,6 +32,7 @@ class Controller
         echo $this->twig->render('list.html.twig', array('articles' => $articles));
     }
 
+    //récupération de tous les articles
     public function getAllArticles()
     {
         $articles = [];
@@ -43,6 +44,7 @@ class Controller
         return $articles;
     }
 
+    //récupération d'un article par l'id
     public function getArticle($id, $feedback = null)
     {
         $queryArticle = $this->bdd->prepare('SELECT * FROM blog WHERE id = :id');
@@ -69,6 +71,7 @@ class Controller
         );
     }
 
+    //récupération de la liste de tag (pour charger le multiple select dans le formulaire)
     public function getAllTags()
     {
         $queryTags = $this->bdd->prepare('SELECT * FROM tags');
@@ -79,6 +82,7 @@ class Controller
         return $listTags = $queryTags->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    //récupération des tags correspodant à un article avec son id
     public function getTags($id_article)
     {
         $queryTags = $this->bdd->prepare(
@@ -91,51 +95,7 @@ class Controller
         return $tags = $queryTags->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function connexion()
-    {
-        echo $this->twig->render('login.html.twig', array('blogURL' => $this->blog));
-    }
-
-    public function login()
-    {
-        if ((isset($_POST['user']) && ! empty($_POST['user'])) && (isset($_POST['password']) && ! empty($_POST['password']))) {
-            $user     = addslashes($_POST['user']);
-            $password = addslashes($_POST['password']);
-
-            if ($this->isValid($user, $password) == true) {
-                $_SESSION['user'] = $user;
-                $this->router->redirect('/');
-            } else {
-                $feedback = "L'utilisateur ou le mot de passe est incorrect";
-                $this->router->redirect('/connexion', $feedback);
-            }
-        } else {
-            $feedback = "Vous n'avez pas saisi tous les champs";
-            $this->router->redirect('/connexion', $feedback);
-        }
-    }
-
-    public function logout()
-    {
-        if (isset($_SESSION['user'])) {
-            unset($_SESSION['user']);
-        }
-        $this->router->redirect('/');
-    }
-
-    public function isValid($user, $password)
-    {
-        $queryUser = $this->bdd->prepare('SELECT * FROM user WHERE name=:name AND password=:password');
-        if ( ! $queryUser->execute(array(':name' => $user, ':password' => $password))) {
-            return false;
-        }
-        if ($queryUser->rowCount() == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+    //retourne true si l'utilisater est connecté, false si il ne l'est pas
     public function isConnected()
     {
         if ( ! empty($_SESSION['user']) AND isset($_SESSION['user'])) {

@@ -1,0 +1,27 @@
+<h1>Bienvenue sur la page d'ajout d'article</h1>
+<!--Formulaire d'ajout d'article-->
+<form method="post" action="{{ blogURL }}/upload" enctype="multipart/form-data">
+
+        <label for="title">Titre</label>
+        <input type="text" placeholder="Titre de l'article" name="title" id="title">
+
+        <label for="author">Auteur</label>
+        <input type="text" placeholder="Auteur" name="author" id="author">
+
+        <label for="image">Image à la une</label>
+        <input type="file" name="image" id="image">
+
+    {% if tags is not null %}
+        <label for="tags">Tags</label>
+        <select multiple="multiple" id="tags" name="tags[]">
+            {% for tag in tags %}
+            <option value="{{ tag.id }}">{{ tag.name }}</option>
+            {% endfor %}
+        </select>
+    {% endif %}
+
+        <label for="content">Contenu</label>
+        <textarea id=content" name="content" rows="3"></textarea>
+
+    <button type="submit">Ajouter</button>
+</form>

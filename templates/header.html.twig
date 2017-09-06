@@ -5,24 +5,39 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/web/web.css">
+    <link rel="stylesheet" href="{{ blogURL }}/assets/web/web.css">
     <title>Blog ECV</title>
 </head>
 <body>
 
 
 <header>
+    <div id="top-header">
+        <div class="container">
+            <ul>
+                {% if connected == true %}
+                    <li><a href="deconnexion"><b>{{ user }}</b> - Se déconnecter</a></li>
+                {% else %}
+                <li><a href="connexion">Se connecter</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
     <div class="container">
         <div id="logo">
-            <img src="./assets/images/logo.gif" alt="logo">
+            <a href="{{ blogURL }}">
+                <img src="{{ blogURL }}/assets/images/logo.svg" alt="logo">
+
+            </a>
         </div>
 
         <div id="menu">
             <ul>
-                <li><a href="index.php">Liste des articles</a></li>
-                <li><a href="add.php">Ajouter</a></li>
-                <li><a href="edit.php">Modifier</a></li>
+                <li><a href="{{ blogURL }}">Liste des articles</a></li>
+                <li><a href="{{ blogURL }}/add">Ajouter</a></li>
+                {% if connected == true %}
+                <li><a href="{{ blogURL }}/admin">Administration</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -31,3 +46,9 @@
 
 <main>
     <div class="container">
+
+        {% if feedback is not null %}
+            <div class="alert">
+                {{ feedback }}
+            </div>
+        {% endif %}

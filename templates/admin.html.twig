@@ -1,0 +1,42 @@
+<h1>
+    Espace d'administration
+</h1>
+
+{% for article in articles %}
+
+    <article class="admin">
+        <div class="wrapper">
+            <div class="meta">
+                <div class="title">
+                    <h2>
+                        {{ article.titre }}
+                    </h2>
+                </div>
+
+                <div class="date">
+                    publié le
+                    <i>
+                        {{ article.date|date("d/m/Y") }}
+                    </i>
+                </div>
+
+                <div class="author">
+                    par {{ article.auteur }}
+                </div>
+            </div>
+
+            <div class="options">
+                <a href="delete/{{ article.id }}">Supprimer</a>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img src="{{ article.image }}">
+        </div>
+
+        </article>
+{% endfor %}
+
+
+
+
