@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Roboto, sans Serif; }
+  font-family: Roboto, sans Serif, serif; }
 
 .container {
   max-width: 1080px;
@@ -10,7 +10,22 @@
   width: 80%; }
 
 header {
-  background-color: rgba(0, 63, 17, 0.32); }
+  background-color: #b3b3b3; }
+  header #top-header {
+    background-color: grey; }
+    header #top-header ul {
+      width: 100%;
+      margin-bottom: 0; }
+      header #top-header ul li {
+        list-style-type: none;
+        text-align: right; }
+        header #top-header ul li a {
+          line-height: 1.2em;
+          color: white;
+          font-weight: bold;
+          text-transform: uppercase;
+          padding: 7px;
+          display: inline-block; }
   header .container {
     display: flex; }
     @media screen and (max-width: 980px) {
@@ -46,7 +61,6 @@ header {
         header #menu ul li a {
           text-decoration: none;
           color: black;
-          border-bottom: 2px solid rgba(0, 63, 17, 0.32);
           text-transform: uppercase; }
   header::after {
     content: '';
@@ -68,11 +82,16 @@ main {
       align-self: center; }
     main article .image-container {
       grid-area: pic;
-      align-self: center; }
+      align-self: center;
+      overflow: hidden;
+      max-width: 100%; }
       main article .image-container img {
+        max-height: 100%;
+        height: auto;
         -webkit-box-shadow: 0 4px 11px -4px black;
         -moz-box-shadow: 0 4px 11px -4px black;
-        box-shadow: 0 4px 11px -4px black; }
+        box-shadow: 0 4px 11px -4px black;
+        width: 200px; }
     main article .date {
       grid-area: date;
       align-self: center; }
@@ -99,7 +118,7 @@ main {
       grid-area: link; }
   main form button[type=submit] {
     padding: 10px;
-    background-color: rgba(0, 63, 17, 0.32);
+    background-color: grey;
     border: none;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -108,10 +127,8 @@ main {
 
 footer {
   color: white;
-  background-color: rgba(0, 63, 17, 0.32);
+  background-color: grey;
   text-transform: uppercase;
   font-size: 20px;
   padding: 10px;
   text-align: center; }
-
-/*# sourceMappingURL=web.css.map */

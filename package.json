@@ -1,0 +1,27 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "sass": "^1.0.0-beta.2",
+    "scss": "^0.2.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hhochart29/Blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hhochart29/Blog/issues"
+  },
+  "homepage": "https://github.com/hhochart29/Blog#readme",
+  "description": ""
+}
