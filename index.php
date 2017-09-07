@@ -73,6 +73,8 @@ class Router
             case 'addcomment':
                 $controller_connected->addComment($urlparts['1']);
                 break;
+            case 'testselt':
+                $controller->nouvellefonction();
             case 'articles':
                 if (isset($urlparts['1'])) {
                     $controller->getArticle($urlparts['1']);
